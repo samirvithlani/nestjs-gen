@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { BlogModule } from './blog/blog.module';
 import { StudentController } from './students/StudentController';
 import { userSchema } from './users/schemas/user.schema';
 import { UsersModule } from './users/users.module';
@@ -9,18 +10,10 @@ import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    UsersModule,
+    // UsersModule,
     MongooseModule.forRoot('mongodb://127.0.0.1:27017',{
-      dbName: "jar",
-    }),
-    MongooseModule.forFeature(
-    [
-      {
-        name: "User",
-        schema: userSchema,
-      }
-    ]
-    ),
+      dbName: "jar",}),
+      BlogModule
   
   ],
   controllers: [AppController,StudentController],
